@@ -2,6 +2,7 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  --menu-active-color: rgba(35, 35, 35, 1);
 }
 * {
   box-sizing: border-box;
@@ -31,14 +32,18 @@ img {
 }
 
 .topnav {
-  overflow: hidden;
-  margin: 3.5%;
+  margin: 3.5% 0 3.5% 3.5%;
 }
 .header-logo {
     float: left;
+  
 }
 .main-navbar {
     float: right;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    z-index: 1;
 }
 .topnav a {
   float: left;
@@ -48,7 +53,7 @@ img {
   padding: 12px 12px;
   margin: 5px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   font-family: Roboto, sans-serif;
 }
 
@@ -56,6 +61,9 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 1px;
 }
 
 .topnav a.active {
@@ -66,22 +74,52 @@ img {
 
 .topnav .icon {
   display: none;
+  
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 915px){
+  .topnav {
+    margin: 33px 12px 28px 31px;
+  }
+
+  .topnav a {
+    display: none;
+    color: white;
+    font-size: 3.15vw;
+  }
   .topnav a.icon {
     float: right;
     display: block;
+    margin-right: 15px;
+    color: red;
+   
+  }
+  .topnav a.icon:hover{
+    color: #fff;
+  }
+  .main-navbar__active {
+    background: var(--menu-active-color);
+    border-radius: 15px;
+    color: white;
   }
 }
 
+
+
 @media screen and (max-width: 768px) {
+  .header-logo img {
+    width: 24.88vw;
+  }
+
+  
+}
+
+@media screen and (max-width: 915px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: -12px;
+    top: -33px;
   }
   .topnav.responsive a {
     float: none;
@@ -97,7 +135,6 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 } 
 
@@ -405,63 +442,54 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
+  min-height: 64.161vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
-  box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
 }
 .hero-content {
   padding: 51px 67px;
-  grid-column: span 4;
+  grid-column: span 5;
   background: #232323;
   color: #fff;
   position: relative;
   text-align: left;
   min-width: 424px;
+  display: flex;
+  flex-direction: column;
+  gap: 73px;
 }
-.hero-content::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #232323;
-  position: absolute;
-  right: -80px;
-  top: 0;
-}
-.hero-content > * {
-  position: relative;
-  z-index: 1;
-}
+
 .hero-headline {
-  font-size: 6rem;
+  font-size: 6.6667vw;
   font-weight: normal;
   white-space: nowrap;
 }
 .hero-text {
   width: 146%;
-  font-weight: normal;
-  margin-top: 57px;
+  font-size: 1.2rem;
   padding: 0;
 }
 .btn-signup {
   outline: none;
   text-transform: capitalize;
-  font-size: 1.3rem;
-  padding: 15px 23px;
+  font-size: 1.25rem;
+  padding: 11px 33px;
   margin: 0;
-  margin-top: 59px;
 }
 .hero-img {
-  grid-column: span 8;
+  grid-column: span 7;
 }
 .hero-img img {
   width: 100%;
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
+  object-position: center;
 }
 .copyrights {
   color: #fe142f;
@@ -479,14 +507,20 @@ footer {
   margin: 0 20px;
 }
 @media screen and (max-width: 800px) {
+  main {
+    margin-bottom: 0;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
+    margin: 0;
   }
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0px;
+    gap: 17px;
+    min-width: 0;
   }
   .hero-content::after {
     content: unset;
@@ -495,12 +529,14 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    /* font-size: 4.5rem; */
+      font-size: 9.6618vw;
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
+    font-size: 3.141vw;
   }
   .hero-img img {
     border-radius: 10px;
@@ -508,12 +544,19 @@ footer {
   }
   .hero-section > .btn-signup {
     display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
+    margin: 29px auto;
+    font-size: 0.7rem;
+    padding: 0.445em 2.2143em;
+  }
+  footer{
+    margin: 0;
+    margin-bottom: 20px;
   }
   .copyrights {
     margin-top: 50px;
     text-align: center;
+    font-size: 0.5rem;
+    margin: 0;
   }
 }
 
