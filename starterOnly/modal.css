@@ -47,7 +47,7 @@ img {
   display: block;
   color: #000000;
   text-align: center;
-  padding: 1vw 1.5vw;
+  padding: max(1vw,5px) max(1.5vw,7px);
   margin: 5px;
   text-decoration: none;
   font-size: 18px;
@@ -57,7 +57,7 @@ img {
 .topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
-  border-radius: 3.63vw;
+  border-radius: 1.63vw;
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 1px;
@@ -87,7 +87,7 @@ img {
   .topnav a {
     display: none;
     color: white;
-    font-size: 3.15vw;
+    font-size: max(3.15vw, 12px);
   }
   .topnav a.icon {
     float: right;
@@ -99,7 +99,7 @@ img {
     color: #fff;
   }
   .main-navbar {
-    top: 30px;
+    top: 28px;
     z-index: 1;
   }
   .main-navbar__active {
@@ -111,7 +111,7 @@ img {
 
 @media screen and (max-width: 768px) {
   .header-logo img {
-    width: 24.88vw;
+    width: max(24.88vw, 109px);
   }
 }
 
