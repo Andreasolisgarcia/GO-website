@@ -32,18 +32,15 @@ img {
 }
 
 .topnav {
-  margin: 3.5% 0 3.5% 3.5%;
+  margin: 3.5%;
 }
 .header-logo {
-    float: left;
-  
+  float: left;
 }
 .main-navbar {
-    float: right;
-    position: absolute;
-    right: 0;
-    top: 20px;
-    z-index: 1;
+  float: right;
+  position: absolute;
+  right: 54px;
 }
 .topnav a {
   float: left;
@@ -74,10 +71,15 @@ img {
 
 .topnav .icon {
   display: none;
-  
 }
 
-@media screen and (max-width: 915px){
+@media screen and (max-width: 1320px) {
+  .main-navbar {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 915px) {
   .topnav {
     margin: 33px 12px 28px 31px;
   }
@@ -92,10 +94,13 @@ img {
     display: block;
     margin-right: 15px;
     color: red;
-   
   }
-  .topnav a.icon:hover{
+  .topnav a.icon:hover {
     color: #fff;
+  }
+  .main-navbar {
+    top: 20px;
+    z-index: 1;
   }
   .main-navbar__active {
     background: var(--menu-active-color);
@@ -104,18 +109,16 @@ img {
   }
 }
 
-
-
 @media screen and (max-width: 768px) {
   .header-logo img {
     width: 24.88vw;
   }
-
-  
 }
 
 @media screen and (max-width: 915px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: -12px;
@@ -128,15 +131,15 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -148,8 +151,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -479,6 +480,7 @@ input[data-error]::after {
   font-size: 1.25rem;
   padding: 11px 33px;
   margin: 0;
+  max-width: 200px;
 }
 .hero-img {
   grid-column: span 7;
@@ -530,7 +532,7 @@ footer {
   }
   .hero-headline {
     /* font-size: 4.5rem; */
-      font-size: 9.6618vw;
+    font-size: 9.6618vw;
     white-space: normal;
   }
   .hero-text {
@@ -548,7 +550,7 @@ footer {
     font-size: 0.7rem;
     padding: 0.445em 2.2143em;
   }
-  footer{
+  footer {
     margin: 0;
     margin-bottom: 20px;
   }
@@ -569,4 +571,3 @@ footer {
     opacity: 1;
   }
 }
-
