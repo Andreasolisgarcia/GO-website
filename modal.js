@@ -37,3 +37,35 @@ function closeModal() {
 }
 
 
+// Validate function (for Submit button)
+const form = document.getElementById('form')
+
+
+
+function validate() {
+ return nameValidation()
+}
+
+
+function nameValidation(){
+  const firstName = document.getElementById('first').value
+  const nameError = document.getElementById('nameError')
+
+  if (firstName === '' || firstName === null) {
+    nameError.innerHTML = 'Veuillez saisir un prénom.';
+    return false;
+  }
+
+  if (firstName.length > 0 && firstName.length < 3) {
+    nameError.innerHTML = 'Veuillez saisir un prénom valide.';
+    return false;
+  }
+
+  return true;
+}
+
+form.addEventListener('submit', (e) => {
+  if (!validate()) {
+    e.preventDefault(); 
+  } 
+});
