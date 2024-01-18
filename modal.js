@@ -38,6 +38,11 @@ function closeModal() {
 
 // Validate function (for Submit button)
 const form = document.getElementById("form");
+form.addEventListener("submit", (e) => {
+  if (!validate()) {
+    e.preventDefault();
+  }
+});
 
 function validate() {
   const isValidFirstName = validateNameAndLastName("first");
@@ -51,7 +56,7 @@ function validateNameAndLastName(nameOrLast) {
   const inputValue = inputNameElement.value;
   const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
 
-  var errorField = document.getElementById(nameOrLast + "NameError");
+  var errorField = document.getElementById(nameOrLast + "Error");
 
   if (errorField) {
     errorField.innerHTML = "";
@@ -59,9 +64,8 @@ function validateNameAndLastName(nameOrLast) {
 
   if (inputValue === "" || inputValue === null || inputValue.length === 1) {
     if (!errorField) {
-      errorField = document.createElement("div");
-      errorField.id = nameOrLast + "NameError";
-      inputNameElement.parentNode.appendChild(errorField);
+      const errorName = nameOrLast + "Error";
+      errorField = createErrorElement(errorName, inputNameElement);
     }
     errorField.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
     return false;
@@ -70,11 +74,17 @@ function validateNameAndLastName(nameOrLast) {
   return true;
 }
 
-form.addEventListener("submit", (e) => {
-  if (!validate()) {
-    e.preventDefault();
-  }
-});
+
+
+function createErrorElement(nameError, parentElement) {
+  const errorElement = document.createElement("div");
+  errorElement.id = nameError;
+  parentElement.parentNode.appendChild(errorElement);
+
+  return errorElement
+}
+
+
 
 // function nameValidation(){
 //   const firstName = document.getElementById('first').value
