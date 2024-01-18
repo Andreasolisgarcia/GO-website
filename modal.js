@@ -47,8 +47,9 @@ form.addEventListener("submit", (e) => {
 function validate() {
   const isValidFirstName = validateNameAndLastName("first");
   const isValidLastName = validateNameAndLastName("last");
+  const isValidEmail = validateEmail();
 
-  return isValidFirstName && isValidLastName;
+  return isValidFirstName && isValidLastName && isValidEmail ;
 }
 
 function createErrorElement(parentElement) {
@@ -92,4 +93,39 @@ function validateNameAndLastName(nameOrLast) {
   }
 
   return true;
+}
+
+function validateEmail() {
+  const elements = getElementsAndClearError('email');
+  const inputElement = elements.inputElement;
+  var errorElement = elements.errorElement;
+  const inputValue = inputElement.value; 
+  
+
+  if (inputValue === "") {
+    if (!errorElement) {
+      errorElement = createErrorElement(inputElement);
+    }
+
+    errorElement.innerHTML = "Veuillez donner un email";
+    return false;
+  }
+
+  const isValidEmail = isEmail(inputValue);
+
+  if (!isValidEmail) {
+    if (!emailError) {
+      emailError = createErrorElement(emailInput);
+    }
+    emailError.innerHTML = "Veuillez entrer un mail valide";
+    return false;
+  }
+
+
+  return true;
+}
+
+function isEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
 }
