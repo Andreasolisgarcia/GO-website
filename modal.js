@@ -48,14 +48,15 @@ function validate() {
   const isValidFirstName = validateNameAndLastName("first");
   const isValidLastName = validateNameAndLastName("last");
   const isValidEmail = validateEmail();
+  const isLocationSelected = validateRadios();
 
-  return isValidFirstName && isValidLastName && isValidEmail ;
+  return isValidFirstName && isValidLastName && isValidEmail && isLocationSelected;
 }
 
-function createErrorElement(parentElement) {
+function createErrorElement(element, errorName = element.id + "Error") {
   const errorElement = document.createElement("div");
-  errorElement.id = parentElement.id + "Error";
-  parentElement.parentNode.appendChild(errorElement);
+  errorElement.id = errorName;
+  element.parentNode.appendChild(errorElement);
 
   return errorElement;
 }
@@ -96,11 +97,10 @@ function validateNameAndLastName(nameOrLast) {
 }
 
 function validateEmail() {
-  const elements = getElementsAndClearError('email');
+  const elements = getElementsAndClearError("email");
   const inputElement = elements.inputElement;
   var errorElement = elements.errorElement;
-  const inputValue = inputElement.value; 
-  
+  const inputValue = inputElement.value;
 
   if (inputValue === "") {
     if (!errorElement) {
@@ -121,11 +121,30 @@ function validateEmail() {
     return false;
   }
 
-
   return true;
 }
 
 function isEmail(email) {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailRegex.test(email);
+}
+
+
+function validateRadios(){
+  const locationRadios = document.getElementsByName('location')
+  var locationError = document.getElementById('locationError')
+
+  if (locationError) {
+    locationError.innerHTML = ''
+  }
+
+  var count = 0
+  locationRadios.forEach(locationRadio => locationRadio.checked? count += 1: count += 0)
+
+  if (count === 0) {
+    if(!locationError){
+      locationError = createErrorElement(locationRadios[0], "locationError")
+    }
+    locationError.innerHTML= 'Veulliez selectioner une ville'
+  }
 }
