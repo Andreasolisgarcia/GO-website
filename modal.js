@@ -51,49 +51,45 @@ function validate() {
   return isValidFirstName && isValidLastName;
 }
 
-function validateNameAndLastName(nameOrLast) {
-  const inputNameElement = document.getElementById(nameOrLast);
-  const inputValue = inputNameElement.value;
-  const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
+function createErrorElement(parentElement) {
+  const errorElement = document.createElement("div");
+  errorElement.id = parentElement.id + "Error";
+  parentElement.parentNode.appendChild(errorElement);
 
-  var errorField = document.getElementById(nameOrLast + "Error");
+  return errorElement;
+}
 
-  if (errorField) {
-    errorField.innerHTML = "";
+function getElementsAndClearError(elementID) {
+  const inputElement = document.getElementById(elementID);
+  const errorElement = document.getElementById(elementID + "Error");
+
+  if (errorElement) {
+    errorElement.innerHTML = "";
   }
 
+  return {
+    inputElement: inputElement,
+    errorElement: errorElement,
+  };
+}
+
+function validateNameAndLastName(nameOrLast) {
+  const elements = getElementsAndClearError(nameOrLast);
+
+  const inputElement = elements.inputElement;
+  var errorElement = elements.errorElement;
+
+  const inputValue = inputElement.value;
+  const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
+
   if (inputValue === "" || inputValue === null || inputValue.length === 1) {
-    if (!errorField) {
-      const errorName = nameOrLast + "Error";
-      errorField = createErrorElement(errorName, inputNameElement);
+    if (!errorElement) {
+      errorElement = createErrorElement(inputElement);
     }
-    errorField.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
+
+    errorElement.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
     return false;
   }
 
   return true;
 }
-
-
-
-function createErrorElement(nameError, parentElement) {
-  const errorElement = document.createElement("div");
-  errorElement.id = nameError;
-  parentElement.parentNode.appendChild(errorElement);
-
-  return errorElement
-}
-
-
-
-// function nameValidation(){
-//   const firstName = document.getElementById('first').value
-//   const errorField = document.getElementById('firstNameError')
-
-//   if (firstName === '' || firstName === null || firstName.length === 1) {
-//     errorField.innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
-//     return false;
-//   }
-
-//   return true;
-// }
