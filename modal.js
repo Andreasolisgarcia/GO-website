@@ -17,12 +17,12 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector('.close');
+const closeBtn = document.querySelector(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// close event 
+// close event
 
 closeBtn.addEventListener("click", closeModal);
 
@@ -31,41 +31,59 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal Function 
+// close modal Function
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-
 // Validate function (for Submit button)
-const form = document.getElementById('form')
-
-
+const form = document.getElementById("form");
 
 function validate() {
- return nameValidation()
+  const isValidFirstName = validateNameAndLastName("first");
+  const isValidLastName = validateNameAndLastName("last");
+
+  return isValidFirstName && isValidLastName;
 }
 
+function validateNameAndLastName(nameOrLast) {
+  const inputNameElement = document.getElementById(nameOrLast);
+  const inputValue = inputNameElement.value;
+  const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
 
-function nameValidation(){
-  const firstName = document.getElementById('first').value
-  const nameError = document.getElementById('nameError')
+  var errorField = document.getElementById(nameOrLast + "NameError");
 
-  if (firstName === '' || firstName === null) {
-    nameError.innerHTML = 'Veuillez saisir un prénom.';
-    return false;
+  if (errorField) {
+    errorField.innerHTML = "";
   }
 
-  if (firstName.length > 0 && firstName.length < 3) {
-    nameError.innerHTML = 'Veuillez saisir un prénom valide.';
+  if (inputValue === "" || inputValue === null || inputValue.length === 1) {
+    if (!errorField) {
+      errorField = document.createElement("div");
+      errorField.id = nameOrLast + "NameError";
+      inputNameElement.parentNode.appendChild(errorField);
+    }
+    errorField.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
     return false;
   }
 
   return true;
 }
 
-form.addEventListener('submit', (e) => {
+form.addEventListener("submit", (e) => {
   if (!validate()) {
-    e.preventDefault(); 
-  } 
+    e.preventDefault();
+  }
 });
+
+// function nameValidation(){
+//   const firstName = document.getElementById('first').value
+//   const errorField = document.getElementById('firstNameError')
+
+//   if (firstName === '' || firstName === null || firstName.length === 1) {
+//     errorField.innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
+//     return false;
+//   }
+
+//   return true;
+// }
