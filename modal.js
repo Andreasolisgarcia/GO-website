@@ -64,6 +64,15 @@ function validate() {
   );
 }
 
+const errorMessages = {
+  name: "Veuillez entrer 2 caractères ou plus pour le champ du prénom.",
+  emailRequired: "Veuillez donner un email.",
+  invalidEmail: "Veuillez entrer un mail valide.",
+  birthdate: "Veuillez selectioner une date de naissance.",
+  numberOfTournaments: "Veuillez selectioner un numéro.",
+  location: "Veulliez selectioner une ville.",
+  conditions: "Veuillez accepter les termes et conditions."
+};
 function validateNameAndLastName(nameOrLast) {
   const inputElement = document.getElementById(nameOrLast);
   removeDataErrorAttribute(inputElement);
@@ -84,13 +93,11 @@ function validateNameAndLastName(nameOrLast) {
 function validateEmail() {
   const inputElement = document.getElementById("email");
   const inputValue = inputElement.value;
-  var errorMessage = ""
 
   removeDataErrorAttribute(inputElement);
 
   if (inputValue === "") {
-    errorMessage= "Veuillez donner un email";
-    setDataErrorAttribute(inputElement, errorMessage);
+    setDataErrorAttribute(inputElement, errorMessages.emailRequired);
     return false;
   }
 
@@ -98,7 +105,7 @@ function validateEmail() {
 
   if (!isValidEmail) {
     errorMessage= "Veuillez entrer un mail valide";
-    setDataErrorAttribute(inputElement, errorMessage);
+    setDataErrorAttribute(inputElement, errorMessages.invalidEmail);
     return false;
   }
 
@@ -111,13 +118,11 @@ function isEmail(email) {
 }
 
 function validateBirthdate() {
-  const birthdateErrorMessage = "Veuillez selectioner une date de naissance";
-  return fieldNotEmpty("birthdate", birthdateErrorMessage);
+  return fieldNotEmpty("birthdate", errorMessages.birthdate);
 }
 
 function validateNumberOfturnements() {
-  const turnamentsErrorMessage = "Veuillez selectioner un numéro";
-  return fieldNotEmpty("quantity", turnamentsErrorMessage);
+  return fieldNotEmpty("quantity", errorMessages.numberOfTournaments);
 }
 
 function validateRadios() {
@@ -130,8 +135,7 @@ function validateRadios() {
   );
 
   if (count === 0) {
-    const locationErrorMessage= "Veulliez selectioner une ville";
-    setDataErrorAttribute(locationRadios[0], locationErrorMessage);
+    setDataErrorAttribute(locationRadios[0], errorMessages.location);
     return false;
   }
   return true;
@@ -142,8 +146,7 @@ function validateConditions() {
   removeDataErrorAttribute(inputElement);
 
   if (!inputElement.checked) {
-    const conditionsErrorMessage = "Veuillez accepter les termes et conditions";
-    setDataErrorAttribute(inputElement, conditionsErrorMessage);
+    setDataErrorAttribute(inputElement, errorMessages.conditions);
     return false;
   }
   return true;
