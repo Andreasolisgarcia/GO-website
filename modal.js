@@ -66,13 +66,15 @@ function validate() {
 
 function validateNameAndLastName(nameOrLast) {
   const inputElement = document.getElementById(nameOrLast);
-  var errorElement = clearOrCreateErrorElement(inputElement);
+  removeDataErrorAttribute(inputElement);
+ 
 
   const inputValue = inputElement.value;
   const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
 
   if (inputValue === "" || inputValue === null || inputValue.length === 1) {
-    errorElement.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
+    const errorMessage = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
+    setDataErrorAttribute(inputElement, errorMessage);
     return false;
   }
 
@@ -82,18 +84,21 @@ function validateNameAndLastName(nameOrLast) {
 function validateEmail() {
   const inputElement = document.getElementById("email");
   const inputValue = inputElement.value;
+  var errorMessage = ""
 
-  var errorElement = clearOrCreateErrorElement(inputElement);
-  
+  removeDataErrorAttribute(inputElement);
+
   if (inputValue === "") {
-    errorElement.innerHTML = "Veuillez donner un email";
+    errorMessage= "Veuillez donner un email";
+    setDataErrorAttribute(inputElement, errorMessage);
     return false;
   }
 
   const isValidEmail = isEmail(inputValue);
 
   if (!isValidEmail) {
-    errorElement.innerHTML = "Veuillez entrer un mail valide";
+    errorMessage= "Veuillez entrer un mail valide";
+    setDataErrorAttribute(inputElement, errorMessage);
     return false;
   }
 
@@ -107,7 +112,7 @@ function isEmail(email) {
 
 function validateBirthdate() {
   const birthdateErrorMessage = "Veuillez selectioner une date de naissance";
-  return fieldNotEmpty('birthdate', birthdateErrorMessage);
+  return fieldNotEmpty("birthdate", birthdateErrorMessage);
 }
 
 function validateNumberOfturnements() {
@@ -117,7 +122,7 @@ function validateNumberOfturnements() {
 
 function validateRadios() {
   const locationRadios = document.getElementsByName("location");
-  var locationError = clearOrCreateErrorElement(locationRadios[0], "locationError");
+  removeDataErrorAttribute(locationRadios[0]);
 
   var count = 0;
   locationRadios.forEach((locationRadio) =>
@@ -125,47 +130,47 @@ function validateRadios() {
   );
 
   if (count === 0) {
-    locationError.innerHTML = "Veulliez selectioner une ville";
-    return false
+    const locationErrorMessage= "Veulliez selectioner une ville";
+    setDataErrorAttribute(locationRadios[0], locationErrorMessage);
+    return false;
   }
-  return true
+  return true;
 }
 
 function validateConditions() {
-  const inputElement = document.getElementById("checkbox1")
-  var errorElement = clearOrCreateErrorElement(inputElement, "conditionsError");
+  const inputElement = document.getElementById("checkbox1");
+  removeDataErrorAttribute(inputElement);
 
   if (!inputElement.checked) {
-    errorElement.innerHTML = "Veuillez accepter les termes et conditions";
+    const conditionsErrorMessage = "Veuillez accepter les termes et conditions";
+    setDataErrorAttribute(inputElement, conditionsErrorMessage);
     return false;
   }
   return true;
-}
-
-function clearOrCreateErrorElement(element, errorName = element.id + "Error") {
-  const existingErrorElement = document.getElementById(errorName);
-
-  if (existingErrorElement) {
-    existingErrorElement.innerHTML = "";
-    return existingErrorElement;
-  }
-
-  const errorElement = document.createElement("div");
-  errorElement.id = errorName;
-  errorElement.className = "error";
-  element.parentNode.appendChild(errorElement);
-
-  return errorElement;
 }
 
 function fieldNotEmpty(elementID, errorMessage) {
-  const inputElement = document.getElementById(elementID)
-  var errorElement = clearOrCreateErrorElement(inputElement);
+  const inputElement = document.getElementById(elementID);
+  removeDataErrorAttribute(inputElement);
+
   const inputValue = inputElement.value;
 
   if (inputValue === "" || inputValue === null) {
-    errorElement.innerHTML = errorMessage;
+    setDataErrorAttribute(inputElement, errorMessage);
     return false;
   }
   return true;
+}
+
+function setDataErrorAttribute(element, errorMessage) {
+  const parentElement = element.parentNode;
+
+  parentElement.setAttribute("data-error", errorMessage);
+  parentElement.setAttribute("data-error-visible", "true");
+}
+
+function removeDataErrorAttribute(element) {
+  const parentElement = element.parentNode;
+  parentElement.removeAttribute("data-error");
+  parentElement.removeAttribute("data-error-visible");
 }
