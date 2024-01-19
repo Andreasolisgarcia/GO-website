@@ -49,13 +49,21 @@ function validate() {
   const isValidLastName = validateNameAndLastName("last");
   const isValidEmail = validateEmail();
   const isLocationSelected = validateRadios();
+  const isAnumberSelected = validateNumberOfturnements();
 
-  return isValidFirstName && isValidLastName && isValidEmail && isLocationSelected;
+  return (
+    isValidFirstName &&
+    isValidLastName &&
+    isValidEmail &&
+    isLocationSelected &&
+    isAnumberSelected
+  );
 }
 
 function createErrorElement(element, errorName = element.id + "Error") {
   const errorElement = document.createElement("div");
   errorElement.id = errorName;
+  errorElement.className = "error";
   element.parentNode.appendChild(errorElement);
 
   return errorElement;
@@ -96,6 +104,8 @@ function validateNameAndLastName(nameOrLast) {
   return true;
 }
 
+
+
 function validateEmail() {
   const elements = getElementsAndClearError("email");
   const inputElement = elements.inputElement;
@@ -129,22 +139,40 @@ function isEmail(email) {
   return emailRegex.test(email);
 }
 
+function validateNumberOfturnements() {
+  const elements = getElementsAndClearError("quantity");
+  const inputElement = elements.inputElement;
+  var errorElement = elements.errorElement;
+  const inputValue = inputElement.value;
 
-function validateRadios(){
-  const locationRadios = document.getElementsByName('location')
-  var locationError = document.getElementById('locationError')
+  if (inputValue === "" || inputValue === null) {
+    if (!errorElement) {
+      errorElement = createErrorElement(inputElement);
+    }
+
+    errorElement.innerHTML = `Veuillez selectioner un numéro`;
+    return false;
+  }
+  return true;
+}
+
+function validateRadios() {
+  const locationRadios = document.getElementsByName("location");
+  var locationError = document.getElementById("locationError");
 
   if (locationError) {
-    locationError.innerHTML = ''
+    locationError.innerHTML = "";
   }
 
-  var count = 0
-  locationRadios.forEach(locationRadio => locationRadio.checked? count += 1: count += 0)
+  var count = 0;
+  locationRadios.forEach((locationRadio) =>
+    locationRadio.checked ? (count += 1) : (count += 0)
+  );
 
   if (count === 0) {
-    if(!locationError){
-      locationError = createErrorElement(locationRadios[0], "locationError")
+    if (!locationError) {
+      locationError = createErrorElement(locationRadios[0], "locationError");
     }
-    locationError.innerHTML= 'Veulliez selectioner une ville'
+    locationError.innerHTML = "Veulliez selectioner une ville";
   }
 }
