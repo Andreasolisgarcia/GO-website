@@ -51,6 +51,7 @@ function validate() {
   const isLocationSelected = validateRadios();
   const isAnumberSelected = validateNumberOfturnements();
   const isBirthdate = validateBirthdate();
+  const isConditionsAccepted = validateConditions();
 
   return (
     isValidFirstName &&
@@ -58,11 +59,19 @@ function validate() {
     isValidEmail &&
     isLocationSelected &&
     isAnumberSelected &&
-    isBirthdate
+    isBirthdate &&
+    isConditionsAccepted
   );
 }
 
 function createErrorElement(element, errorName = element.id + "Error") {
+  const existingErrorElement = document.getElementById(errorName);
+
+  if (existingErrorElement) {
+    existingErrorElement.innerHTML= ""
+    return existingErrorElement;
+  }
+
   const errorElement = document.createElement("div");
   errorElement.id = errorName;
   errorElement.className = "error";
@@ -87,18 +96,14 @@ function getElementsAndClearError(elementID) {
 
 function validateNameAndLastName(nameOrLast) {
   const elements = getElementsAndClearError(nameOrLast);
-
   const inputElement = elements.inputElement;
-  var errorElement = elements.errorElement;
+  var errorElement = createErrorElement(inputElement);
 
   const inputValue = inputElement.value;
   const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
 
   if (inputValue === "" || inputValue === null || inputValue.length === 1) {
-    if (!errorElement) {
-      errorElement = createErrorElement(inputElement);
-    }
-
+ 
     errorElement.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
     return false;
   }
@@ -106,19 +111,13 @@ function validateNameAndLastName(nameOrLast) {
   return true;
 }
 
-
-
 function validateEmail() {
   const elements = getElementsAndClearError("email");
   const inputElement = elements.inputElement;
-  var errorElement = elements.errorElement;
+  var errorElement = createErrorElement(inputElement);
   const inputValue = inputElement.value;
 
   if (inputValue === "") {
-    if (!errorElement) {
-      errorElement = createErrorElement(inputElement);
-    }
-
     errorElement.innerHTML = "Veuillez donner un email";
     return false;
   }
@@ -126,10 +125,7 @@ function validateEmail() {
   const isValidEmail = isEmail(inputValue);
 
   if (!isValidEmail) {
-    if (!emailError) {
-      emailError = createErrorElement(emailInput);
-    }
-    emailError.innerHTML = "Veuillez entrer un mail valide";
+    errorElement.innerHTML = "Veuillez entrer un mail valide";
     return false;
   }
 
@@ -144,14 +140,11 @@ function isEmail(email) {
 function validateBirthdate() {
   const elements = getElementsAndClearError("birthdate");
   const inputElement = elements.inputElement;
-  var errorElement = elements.errorElement;
+  var errorElement = createErrorElement(inputElement);
   const inputValue = inputElement.value;
 
   if (inputValue === "" || inputValue === null) {
-    if (!errorElement) {
-      errorElement = createErrorElement(inputElement);
-    }
-
+    
     errorElement.innerHTML = `Veuillez selectioner une date de naissance`;
     return false;
   }
@@ -161,14 +154,10 @@ function validateBirthdate() {
 function validateNumberOfturnements() {
   const elements = getElementsAndClearError("quantity");
   const inputElement = elements.inputElement;
-  var errorElement = elements.errorElement;
+  var errorElement = createErrorElement(inputElement);
   const inputValue = inputElement.value;
 
   if (inputValue === "" || inputValue === null) {
-    if (!errorElement) {
-      errorElement = createErrorElement(inputElement);
-    }
-
     errorElement.innerHTML = `Veuillez selectioner un numéro`;
     return false;
   }
@@ -177,11 +166,8 @@ function validateNumberOfturnements() {
 
 function validateRadios() {
   const locationRadios = document.getElementsByName("location");
-  var locationError = document.getElementById("locationError");
+  var locationError = createErrorElement(locationRadios[0], "locationError");
 
-  if (locationError) {
-    locationError.innerHTML = "";
-  }
 
   var count = 0;
   locationRadios.forEach((locationRadio) =>
@@ -189,9 +175,19 @@ function validateRadios() {
   );
 
   if (count === 0) {
-    if (!locationError) {
-      locationError = createErrorElement(locationRadios[0], "locationError");
-    }
     locationError.innerHTML = "Veulliez selectioner une ville";
   }
+}
+
+function validateConditions() {
+  const elements = getElementsAndClearError("checkbox1");
+  const inputElement = elements.inputElement;
+  var errorElement = createErrorElement(inputElement, "conditionsError");
+
+  if (!inputElement.checked) {
+    
+    errorElement.innerHTML = "Veuillez accepter les termes et conditions";
+    return false;
+  }
+  return true;
 }
