@@ -64,46 +64,14 @@ function validate() {
   );
 }
 
-function createErrorElement(element, errorName = element.id + "Error") {
-  const existingErrorElement = document.getElementById(errorName);
-
-  if (existingErrorElement) {
-    existingErrorElement.innerHTML= ""
-    return existingErrorElement;
-  }
-
-  const errorElement = document.createElement("div");
-  errorElement.id = errorName;
-  errorElement.className = "error";
-  element.parentNode.appendChild(errorElement);
-
-  return errorElement;
-}
-
-function getElementsAndClearError(elementID) {
-  const inputElement = document.getElementById(elementID);
-  const errorElement = document.getElementById(elementID + "Error");
-
-  if (errorElement) {
-    errorElement.innerHTML = "";
-  }
-
-  return {
-    inputElement: inputElement,
-    errorElement: errorElement,
-  };
-}
-
 function validateNameAndLastName(nameOrLast) {
-  const elements = getElementsAndClearError(nameOrLast);
-  const inputElement = elements.inputElement;
+  const inputElement = document.getElementById(nameOrLast);
   var errorElement = createErrorElement(inputElement);
 
   const inputValue = inputElement.value;
   const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
 
   if (inputValue === "" || inputValue === null || inputValue.length === 1) {
- 
     errorElement.innerHTML = `Veuillez entrer 2 caractères ou plus pour le champ du ${nameOrLastInFrench}.`;
     return false;
   }
@@ -112,11 +80,11 @@ function validateNameAndLastName(nameOrLast) {
 }
 
 function validateEmail() {
-  const elements = getElementsAndClearError("email");
-  const inputElement = elements.inputElement;
-  var errorElement = createErrorElement(inputElement);
+  const inputElement = document.getElementById("email");
   const inputValue = inputElement.value;
 
+  var errorElement = createErrorElement(inputElement);
+  
   if (inputValue === "") {
     errorElement.innerHTML = "Veuillez donner un email";
     return false;
@@ -138,36 +106,18 @@ function isEmail(email) {
 }
 
 function validateBirthdate() {
-  const elements = getElementsAndClearError("birthdate");
-  const inputElement = elements.inputElement;
-  var errorElement = createErrorElement(inputElement);
-  const inputValue = inputElement.value;
-
-  if (inputValue === "" || inputValue === null) {
-    
-    errorElement.innerHTML = `Veuillez selectioner une date de naissance`;
-    return false;
-  }
-  return true;
+  const birthdateErrorMessage = "Veuillez selectioner une date de naissance";
+  return fieldNotEmpty('birthdate', birthdateErrorMessage);
 }
 
 function validateNumberOfturnements() {
-  const elements = getElementsAndClearError("quantity");
-  const inputElement = elements.inputElement;
-  var errorElement = createErrorElement(inputElement);
-  const inputValue = inputElement.value;
-
-  if (inputValue === "" || inputValue === null) {
-    errorElement.innerHTML = `Veuillez selectioner un numéro`;
-    return false;
-  }
-  return true;
+  const turnamentsErrorMessage = "Veuillez selectioner un numéro";
+  return fieldNotEmpty("quantity", turnamentsErrorMessage);
 }
 
 function validateRadios() {
   const locationRadios = document.getElementsByName("location");
   var locationError = createErrorElement(locationRadios[0], "locationError");
-
 
   var count = 0;
   locationRadios.forEach((locationRadio) =>
@@ -176,17 +126,45 @@ function validateRadios() {
 
   if (count === 0) {
     locationError.innerHTML = "Veulliez selectioner une ville";
+    return false
   }
+  return true
 }
 
 function validateConditions() {
-  const elements = getElementsAndClearError("checkbox1");
-  const inputElement = elements.inputElement;
+  const inputElement = document.getElementById("checkbox1")
   var errorElement = createErrorElement(inputElement, "conditionsError");
 
   if (!inputElement.checked) {
-    
     errorElement.innerHTML = "Veuillez accepter les termes et conditions";
+    return false;
+  }
+  return true;
+}
+
+function createErrorElement(element, errorName = element.id + "Error") {
+  const existingErrorElement = document.getElementById(errorName);
+
+  if (existingErrorElement) {
+    existingErrorElement.innerHTML = "";
+    return existingErrorElement;
+  }
+
+  const errorElement = document.createElement("div");
+  errorElement.id = errorName;
+  errorElement.className = "error";
+  element.parentNode.appendChild(errorElement);
+
+  return errorElement;
+}
+
+function fieldNotEmpty(elementID, errorMessage) {
+  const inputElement = document.getElementById(elementID)
+  var errorElement = createErrorElement(inputElement);
+  const inputValue = inputElement.value;
+
+  if (inputValue === "" || inputValue === null) {
+    errorElement.innerHTML = errorMessage;
     return false;
   }
   return true;
