@@ -66,7 +66,7 @@ function validate() {
 
 function validateNameAndLastName(nameOrLast) {
   const inputElement = document.getElementById(nameOrLast);
-  var errorElement = createErrorElement(inputElement);
+  var errorElement = clearOrCreateErrorElement(inputElement);
 
   const inputValue = inputElement.value;
   const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
@@ -83,7 +83,7 @@ function validateEmail() {
   const inputElement = document.getElementById("email");
   const inputValue = inputElement.value;
 
-  var errorElement = createErrorElement(inputElement);
+  var errorElement = clearOrCreateErrorElement(inputElement);
   
   if (inputValue === "") {
     errorElement.innerHTML = "Veuillez donner un email";
@@ -117,7 +117,7 @@ function validateNumberOfturnements() {
 
 function validateRadios() {
   const locationRadios = document.getElementsByName("location");
-  var locationError = createErrorElement(locationRadios[0], "locationError");
+  var locationError = clearOrCreateErrorElement(locationRadios[0], "locationError");
 
   var count = 0;
   locationRadios.forEach((locationRadio) =>
@@ -133,7 +133,7 @@ function validateRadios() {
 
 function validateConditions() {
   const inputElement = document.getElementById("checkbox1")
-  var errorElement = createErrorElement(inputElement, "conditionsError");
+  var errorElement = clearOrCreateErrorElement(inputElement, "conditionsError");
 
   if (!inputElement.checked) {
     errorElement.innerHTML = "Veuillez accepter les termes et conditions";
@@ -142,7 +142,7 @@ function validateConditions() {
   return true;
 }
 
-function createErrorElement(element, errorName = element.id + "Error") {
+function clearOrCreateErrorElement(element, errorName = element.id + "Error") {
   const existingErrorElement = document.getElementById(errorName);
 
   if (existingErrorElement) {
@@ -160,7 +160,7 @@ function createErrorElement(element, errorName = element.id + "Error") {
 
 function fieldNotEmpty(elementID, errorMessage) {
   const inputElement = document.getElementById(elementID)
-  var errorElement = createErrorElement(inputElement);
+  var errorElement = clearOrCreateErrorElement(inputElement);
   const inputValue = inputElement.value;
 
   if (inputValue === "" || inputValue === null) {
