@@ -42,7 +42,22 @@ form.addEventListener("submit", (e) => {
   if (!validate()) {
     e.preventDefault();
   }
+
+  if (validate()) {
+    const modalFormBody = document.getElementById("modalFormBody");
+    var width = modalFormBody.offsetWidth;
+    var height = modalFormBody.offsetHeight;
+    confirmationForm("merci !, votre confirmation a éte reçue", width, height);
+  }
 });
+
+function confirmationForm(message, width, height) {
+  const modalFormBody = document.getElementById("modalFormBody");
+  modalFormBody.style.height = height + "px";
+  modalFormBody.style.width = width + "px";
+  modalFormBody.innerHTML = `<div><h1>${message}</h1></div>
+  <button class="btn-submit button">Fermer</button>`;
+}
 
 function validate() {
   const isValidFirstName = validateNameAndLastName("first");
@@ -71,12 +86,11 @@ const errorMessages = {
   birthdate: "Veuillez selectioner une date de naissance.",
   numberOfTournaments: "Veuillez selectioner un numéro.",
   location: "Veulliez selectioner une ville.",
-  conditions: "Veuillez accepter les termes et conditions."
+  conditions: "Veuillez accepter les termes et conditions.",
 };
 function validateNameAndLastName(nameOrLast) {
   const inputElement = document.getElementById(nameOrLast);
   removeDataErrorAttribute(inputElement);
- 
 
   const inputValue = inputElement.value;
   const nameOrLastInFrench = nameOrLast === "first" ? "prénom" : "nom";
@@ -104,7 +118,7 @@ function validateEmail() {
   const isValidEmail = isEmail(inputValue);
 
   if (!isValidEmail) {
-    errorMessage= "Veuillez entrer un mail valide";
+    errorMessage = "Veuillez entrer un mail valide";
     setDataErrorAttribute(inputElement, errorMessages.invalidEmail);
     return false;
   }

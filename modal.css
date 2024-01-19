@@ -227,6 +227,12 @@ main {
   margin: 15px auto;
 }
 
+.modal-body__confirmation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
