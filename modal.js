@@ -50,13 +50,15 @@ function validate() {
   const isValidEmail = validateEmail();
   const isLocationSelected = validateRadios();
   const isAnumberSelected = validateNumberOfturnements();
+  const isBirthdate = validateBirthdate();
 
   return (
     isValidFirstName &&
     isValidLastName &&
     isValidEmail &&
     isLocationSelected &&
-    isAnumberSelected
+    isAnumberSelected &&
+    isBirthdate
   );
 }
 
@@ -137,6 +139,23 @@ function validateEmail() {
 function isEmail(email) {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailRegex.test(email);
+}
+
+function validateBirthdate() {
+  const elements = getElementsAndClearError("birthdate");
+  const inputElement = elements.inputElement;
+  var errorElement = elements.errorElement;
+  const inputValue = inputElement.value;
+
+  if (inputValue === "" || inputValue === null) {
+    if (!errorElement) {
+      errorElement = createErrorElement(inputElement);
+    }
+
+    errorElement.innerHTML = `Veuillez selectioner une date de naissance`;
+    return false;
+  }
+  return true;
 }
 
 function validateNumberOfturnements() {
