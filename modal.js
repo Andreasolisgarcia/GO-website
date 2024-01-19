@@ -47,16 +47,18 @@ form.addEventListener("submit", (e) => {
     const modalFormBody = document.getElementById("modalFormBody");
     var width = modalFormBody.offsetWidth;
     var height = modalFormBody.offsetHeight;
-    confirmationForm("merci !, votre confirmation a éte reçue", width, height);
+    confirmation("Merci pour <br> votre inscription", width, height);
   }
 });
 
-function confirmationForm(message, width, height) {
+function confirmation(message, width, height) {
   const modalFormBody = document.getElementById("modalFormBody");
   modalFormBody.style.height = height + "px";
   modalFormBody.style.width = width + "px";
-  modalFormBody.innerHTML = `<div><h1>${message}</h1></div>
-  <button class="btn-submit button">Fermer</button>`;
+  modalFormBody.className = "confirmation"
+  modalFormBody.innerHTML = `<div class= "confirmation-content"><div class= "confirmation-message">${message}</div></div>
+  <button  class="btn-submit"
+  class="button">Fermer</button>`;
 }
 
 function validate() {
