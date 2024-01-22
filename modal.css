@@ -505,7 +505,7 @@ input[data-error]::after {
   margin: 12px 0 8px 0;
 }
 .hero-section {
-  min-height: 64.161vh;
+  min-height: 68vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -515,7 +515,7 @@ input[data-error]::after {
   background: #232323;
 }
 .hero-content {
-  padding: 51px 67px;
+  padding: 51px 56px;
   grid-column: span 5;
 
   color: #fff;
@@ -533,9 +533,10 @@ input[data-error]::after {
   white-space: nowrap;
 }
 .hero-text {
-  width: 146%;
+  width: 95%;
   font-size: 1.2rem;
   padding: 0;
+  font-weight: 100;
 }
 .btn-signup {
   outline: none;
