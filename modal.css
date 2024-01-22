@@ -629,7 +629,7 @@ input[data-error]::after {
 }
 
   /* modal responsive */
-@media screen and(min-width: 501px){
+@media screen and (min-width: 501px){
   .bground-open {
     display: block;
     display: flex;
@@ -639,6 +639,9 @@ input[data-error]::after {
 }
 
 @media screen and (max-width: 500px) {
+  body{
+    justify-content: flex-start;
+  }
 
   main {
     font-size: 120%;
