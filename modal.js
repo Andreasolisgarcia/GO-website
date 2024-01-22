@@ -28,16 +28,13 @@ closeBtn.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
-  // main.classList.add('main-modal-responsive')
+  modalbg.classList.add('bground-open')
 
 }
 
 // close modal Function
 function closeModal() {
-  modalbg.style.display = "none";
-  // main.classList.remove('main-modal-responsive')
-
+  modalbg.classList.remove('bground-open');
 }
 
 

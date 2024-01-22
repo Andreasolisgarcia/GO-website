@@ -19,6 +19,8 @@
 body {
   margin: 0;
   display: flex;
+  height: 100vh;
+  justify-content: space-between;
   flex-direction: column;
   background-image: url("background.png");
   font-family: var(--font-default);
@@ -100,7 +102,7 @@ img {
   }
   .main-navbar {
     top: 20px;
-    z-index: 1;
+    z-index: 2;
   }
   .main-navbar__active {
     background: var(--menu-active-color);
@@ -206,6 +208,13 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+}
+
+.bground-open {
+  display: block;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 .content {
@@ -623,6 +632,12 @@ input[data-error]::after {
     font-size: 0.7rem;
     padding: 0.445em 2.2143em;
   }
+  .bground-open {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   footer {
     margin-bottom: 20px;
   }
@@ -638,6 +653,10 @@ input[data-error]::after {
   /* modal responsive */
   main {
     font-size: 120%;
+  }
+  .bground {
+    top: 14px
+;
   }
   .content {
     border-radius: 10px 10px 0 0;
