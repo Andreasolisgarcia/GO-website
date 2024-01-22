@@ -221,12 +221,10 @@ main {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
 }
 
 .modal-body {
-  padding: 5px 7.5%;
-  margin: 15px auto;
+  padding: 30px 7.58% 17px;
 }
 
 #modalFormBody.confirmation {
@@ -271,7 +269,7 @@ input {
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
-  height: 48px;
+  height: 60px;
 }
 .formData[data-error]::after {
   content: attr(data-error);
@@ -304,6 +302,7 @@ input[data-error]::after {
   font-size: 12px;
   font-weight: normal;
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
@@ -370,7 +369,10 @@ input[data-error]::after {
   padding-top: 12px;
 }
 #form .formData:nth-child(8){
-  margin: 13px 0 19px;
+  margin: 8px 0 19px;
+}
+.location {
+  padding-right: 30px;
 }
 .close {
   position: absolute;
@@ -500,7 +502,7 @@ input[data-error]::after {
 .text-label {
   font-weight: normal;
   font-size: 14px;
-  margin: 12px 0 10px 0;
+  margin: 12px 0 8px 0;
 }
 .hero-section {
   min-height: 64.161vh;
