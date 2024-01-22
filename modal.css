@@ -2,7 +2,12 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
-  --menu-active-color: rgba(35, 35, 35, 1);
+  --menu-active-color:#232323;;
+  --menu-active-text: white;
+  --modal-form-body-width: 420px;
+  --modal-form-body-height: 677px;
+  --gray: #c4c4c4;
+  --green: #279e7a;
 }
 * {
   box-sizing: border-box;
@@ -22,10 +27,7 @@ body {
   margin: 0 auto;
 }
 
-p {
-  margin-bottom: 0;
-  padding: 0.5vw;
-}
+
 
 img {
   padding-right: 1rem;
@@ -57,7 +59,7 @@ img {
 .topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
-  border-radius: 1.63vw;
+  border-radius: 8px;
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 1px;
@@ -86,8 +88,8 @@ img {
 
   .topnav a {
     display: none;
-    color: white;
-    font-size: max(3.15vw, 12px);
+    color: var(--menu-active-text);
+    font-size: max(3.15vw, 18px);
   }
   .topnav a.icon {
     float: right;
@@ -99,19 +101,19 @@ img {
     color: #fff;
   }
   .main-navbar {
-    top: 28px;
+    top: 24px;
     z-index: 1;
   }
   .main-navbar__active {
     background: var(--menu-active-color);
     border-radius: 15px;
-    color: white;
+    color: var(--menu-active-text);
   }
 }
 
 @media screen and (max-width: 768px) {
   .header-logo img {
-    width: max(24.88vw, 109px);
+    width: max(24.88vw, 129px);
   }
 }
 
@@ -223,15 +225,16 @@ main {
 }
 
 .modal-body {
-  padding: 15px 8%;
+  padding: 5px 7.5%;
   margin: 15px auto;
 }
 
-.confirmation {
-
+#modalFormBody.confirmation {
   display: flex;
   flex-direction: column;
   padding: 30px 40px;
+  width: var(--modal-form-body-width);
+  height: var(--modal-form-body-height);
 }
 
 .confirmation-content {
@@ -252,10 +255,10 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 17px;
-  font-weight: normal;
+  font-size: 14px;
+  font-weight: 400;
   display: inline-block;
-  margin-bottom: 11px;
+  padding-bottom: 11px;
 }
 input {
   padding: 8px;
@@ -272,12 +275,12 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.43em;
   color: #e54858;
   display: block;
-  margin-top: 7px;
+  margin-top: 9px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -297,21 +300,22 @@ input[data-error]::after {
 .checkbox-label,
 .checkbox2-label {
   position: relative;
-  margin-left: 36px;
+  margin-left: 35px;
   font-size: 12px;
   font-weight: normal;
+  margin-bottom: 0;
 }
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid #279e7a;
+  border: 1px solid var(--gray);
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
   position: absolute;
-  left: -30px;
+  left: -28px;
   top: -1px;
   transition: 0.3s;
 }
@@ -338,6 +342,10 @@ input[data-error]::after {
 .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
 }
+
+.checkbox-input:checked + .checkbox-label span{
+  border: 2px solid var(--green);
+}
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
   background: #279e7a;
 }
@@ -358,6 +366,12 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
+#form label[for="quantity"] {
+  padding-top: 12px;
+}
+#form .formData:nth-child(8){
+  margin: 13px 0 19px;
+}
 .close {
   position: absolute;
   right: 15px;
@@ -366,7 +380,7 @@ input[data-error]::after {
   height: 32px;
   opacity: 1;
   cursor: pointer;
-  transform: scale(0.7);
+  transform: scale(0.629);
 }
 .close:before,
 .close:after {
@@ -394,6 +408,27 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+}
+
+@media screen and (max-width: 500px){
+  main {
+    position: relative;
+        padding: 0;
+        margin: 0;
+  }
+  .hero-section{
+    padding: 0 30px;
+  }
+  .bground {
+    background: none;
+    position: absolute;
+    overflow: visible;
+  }
+
+  .content {
+    margin: 0;
+  }
+
 }
 /* custom select styles */
 .custom-select {
@@ -464,7 +499,8 @@ input[data-error]::after {
 /* custom select end */
 .text-label {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
+  margin: 12px 0 10px 0;
 }
 .hero-section {
   min-height: 64.161vh;
@@ -521,23 +557,27 @@ input[data-error]::after {
 .copyrights {
   color: #fe142f;
   padding: 0;
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 60px 0 30px;
   font-weight: bolder;
 }
 .hero-section > .btn-signup {
   display: none;
 }
-footer {
+
+@media screen and (max-width: 1348px){
+  footer {
   padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 0 20px;
 }
+}
+
 @media screen and (max-width: 800px) {
   main {
     margin-bottom: 0;
+
   }
   .hero-section {
+    min-height: 0;
     display: block;
     box-shadow: unset;
     margin: 0;
@@ -567,7 +607,7 @@ footer {
   }
   .hero-img img {
     border-radius: 10px;
-    margin-top: 40px;
+    margin-top:9.6vw;
   }
   .hero-section > .btn-signup {
     display: block;
@@ -576,7 +616,6 @@ footer {
     padding: 0.445em 2.2143em;
   }
   footer {
-    margin: 0;
     margin-bottom: 20px;
   }
   .copyrights {

@@ -18,7 +18,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
-
+// var main = document.querySelector("main")
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -29,12 +29,18 @@ closeBtn.addEventListener("click", closeModal);
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  // main.classList.add('main-modal-responsive')
+
 }
 
 // close modal Function
 function closeModal() {
   modalbg.style.display = "none";
+  // main.classList.remove('main-modal-responsive')
+
 }
+
+
 
 // Validate function (for Submit button)
 const form = document.getElementById("form");
@@ -44,7 +50,7 @@ form.addEventListener("submit", (e) => {
   }
 
   if (validate()) {
-    const modalFormBody = document.getElementById("modalFormBody");
+    const modalFormBody = document.getElementById("content");
     var width = modalFormBody.offsetWidth;
     var height = modalFormBody.offsetHeight;
     confirmation("Merci pour <br> votre inscription", width, height);
@@ -53,12 +59,13 @@ form.addEventListener("submit", (e) => {
 
 function confirmation(message, width, height) {
   const modalFormBody = document.getElementById("modalFormBody");
-  modalFormBody.style.height = height + "px";
-  modalFormBody.style.width = width + "px";
+  const root = document.querySelector(':root')
   modalFormBody.className = "confirmation"
   modalFormBody.innerHTML = `<div class= "confirmation-content"><div class= "confirmation-message">${message}</div></div>
   <button  class="btn-submit"
   class="button">Fermer</button>`;
+  root.style.setProperty('--modal-form-body-width', width +'px');
+  root.style.setProperty('--modal-form-body-height', height + 'px');
 }
 
 function validate() {
