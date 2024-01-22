@@ -2,7 +2,7 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
-  --menu-active-color:#232323;;
+  --menu-active-color: #232323;
   --menu-active-text: white;
   --modal-form-body-width: 420px;
   --modal-form-body-height: 677px;
@@ -27,8 +27,6 @@ body {
   margin: 0 auto;
 }
 
-
-
 img {
   padding-right: 1rem;
 }
@@ -49,7 +47,7 @@ img {
   display: block;
   color: #000000;
   text-align: center;
-  padding: max(1vw,5px) max(1.5vw,5px);
+  padding: max(1vw, 5px) max(1.5vw, 5px);
   margin: 5px;
   text-decoration: none;
   font-size: 18px;
@@ -77,19 +75,19 @@ img {
 
 @media screen and (max-width: 1320px) {
   .main-navbar {
-    right: 0;
+    right: 7px;
   }
 }
 
 @media screen and (max-width: 915px) {
   .topnav {
-    margin: 33px 12px 28px 31px;
+    margin: 28px 12px 25px 31px;
   }
 
   .topnav a {
     display: none;
     color: var(--menu-active-text);
-    font-size: max(3.15vw, 18px);
+    font-size: max(3.15vw, 19px);
   }
   .topnav a.icon {
     float: right;
@@ -225,6 +223,7 @@ main {
 
 .modal-body {
   padding: 30px 7.58% 17px;
+  box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.25);
 }
 
 #modalFormBody.confirmation {
@@ -242,7 +241,7 @@ main {
   align-items: center;
 }
 
-.confirmation-message{
+.confirmation-message {
   display: flex;
   justify-content: center;
   padding: 0 40px;
@@ -291,9 +290,9 @@ input {
 }
 
 input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
+  content: attr(data-error);
+  font-size: 0.4em;
+  color: red;
 }
 .checkbox-label,
 .checkbox2-label {
@@ -342,7 +341,7 @@ input[data-error]::after {
   opacity: 1;
 }
 
-.checkbox-input:checked + .checkbox-label span{
+.checkbox-input:checked + .checkbox-label span {
   border: 2px solid var(--green);
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
@@ -368,7 +367,7 @@ input[data-error]::after {
 #form label[for="quantity"] {
   padding-top: 12px;
 }
-#form .formData:nth-child(8){
+#form .formData:nth-child(8) {
   margin: 8px 0 19px;
 }
 .location {
@@ -376,7 +375,7 @@ input[data-error]::after {
 }
 .close {
   position: absolute;
-  right: 15px;
+  right: 9px;
   top: 15px;
   width: 32px;
   height: 32px;
@@ -412,13 +411,13 @@ input[data-error]::after {
   border: 0;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   main {
     position: relative;
-        padding: 0;
-        margin: 0;
+    padding: 0;
+    margin: 0;
   }
-  .hero-section{
+  .hero-section {
     padding: 0 30px;
   }
   .bground {
@@ -430,7 +429,6 @@ input[data-error]::after {
   .content {
     margin: 0;
   }
-
 }
 /* custom select styles */
 .custom-select {
@@ -500,7 +498,7 @@ input[data-error]::after {
 }
 /* custom select end */
 .text-label {
-  font-weight: normal;
+  font-weight: 100;
   font-size: 14px;
   margin: 12px 0 8px 0;
 }
@@ -568,16 +566,15 @@ input[data-error]::after {
   display: none;
 }
 
-@media screen and (max-width: 1348px){
+@media screen and (max-width: 1348px) {
   footer {
-  padding-left: 2vw;
-}
+    padding-left: 2vw;
+  }
 }
 
 @media screen and (max-width: 800px) {
   main {
     margin-bottom: 0;
-
   }
   .hero-section {
     min-height: 0;
@@ -610,7 +607,7 @@ input[data-error]::after {
   }
   .hero-img img {
     border-radius: 10px;
-    margin-top:9.6vw;
+    margin-top: 9.6vw;
   }
   .hero-section > .btn-signup {
     display: block;
@@ -629,6 +626,36 @@ input[data-error]::after {
   }
 }
 
+@media screen and (max-width: 500px) {
+  /* modal responsive */
+  main {
+    font-size: 120%;
+  }
+  .content {
+    border-radius: 10px 10px 0 0;
+  }
+  .modal-body{
+    padding-top: 20px;
+  }
+  .close {
+    transform: scale(0.512);
+    top: 10px;
+  }
+
+  label {
+    font-size: 12px;
+    padding-bottom: 8px;
+  }
+
+  .text-control{
+    height: 50px;
+  }
+
+  .text-label {
+    font-size: 13px;
+    margin: 6px 6px 0 0;
+  }
+}
 @keyframes modalopen {
   from {
     opacity: 0;
