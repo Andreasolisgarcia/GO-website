@@ -395,7 +395,7 @@ input[data-error]::after {
 }
 .close-btn {
   position: absolute;
-  right: 9px;
+  right: 20px;
   top: 15px;
   width: 32px;
   height: 32px;
