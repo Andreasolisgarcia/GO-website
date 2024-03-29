@@ -102,11 +102,14 @@ img {
   }
   .main-navbar {
     top: 20px;
+ 
   }
+
   .main-navbar__active {
     background: var(--menu-active-color);
     border-radius: 15px;
     color: var(--menu-active-text);
+    z-index: 2;
   }
 }
 
