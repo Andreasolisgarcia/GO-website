@@ -219,7 +219,7 @@ main {
 }
 
 .content {
-  margin: 5% auto 0;
+  /* margin: 5% auto 0; */
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -227,7 +227,8 @@ main {
   background: #232323;
   border-radius: 10px;
   overflow: visible;
-  position: relative;
+  position: absolute;
+  top: 15px;
   color: #fff;
 }
 
