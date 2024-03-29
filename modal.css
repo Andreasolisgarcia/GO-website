@@ -102,7 +102,6 @@ img {
   }
   .main-navbar {
     top: 20px;
-    z-index: 2;
   }
   .main-navbar__active {
     background: var(--menu-active-color);
