@@ -391,7 +391,7 @@ input[data-error]::after {
 .location {
   padding-right: 30px;
 }
-.close {
+.close-btn {
   position: absolute;
   right: 9px;
   top: 15px;
@@ -401,8 +401,8 @@ input[data-error]::after {
   cursor: pointer;
   transform: scale(0.629);
 }
-.close:before,
-.close:after {
+.close-btn:before,
+.close-btn:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -410,10 +410,10 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+.close-btn:before {
   transform: rotate(45deg);
 }
-.close:after {
+.close-btn:after {
   transform: rotate(-45deg);
 }
 .btn-submit,
@@ -667,7 +667,7 @@ input[data-error]::after {
   .modal-body{
     padding-top: 20px;
   }
-  .close {
+  .close-btn {
     transform: scale(0.512);
     top: 10px;
   }

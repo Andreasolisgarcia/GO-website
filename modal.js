@@ -17,14 +17,19 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
+
 // var main = document.querySelector("main")
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// close event
+// close Fonction event
 
-closeBtn.addEventListener("click", closeModal);
+function addCloseEventToBtns() {
+  const closeBtns = document.querySelectorAll(".close");
+  closeBtns.forEach((btn) => btn.addEventListener("click", closeModal));
+}
+
+addCloseEventToBtns() 
 
 // launch modal form
 function launchModal() {
@@ -59,10 +64,12 @@ function confirmation(message, width, height) {
   const root = document.querySelector(':root')
   modalFormBody.className = "confirmation"
   modalFormBody.innerHTML = `<div class= "confirmation-content"><div class= "confirmation-message">${message}</div></div>
-  <button  class="btn-submit"
+  <button  class="btn-submit close"
   class="button">Fermer</button>`;
+
   root.style.setProperty('--modal-form-body-width', width +'px');
   root.style.setProperty('--modal-form-body-height', height + 'px');
+  addCloseEventToBtns() 
 }
 
 function validate() {
