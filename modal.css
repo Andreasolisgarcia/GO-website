@@ -211,21 +211,20 @@ main {
 }
 
 .bground-open {
-  display: block;
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
 }
 
 .content {
-  margin: 5% auto;
+  margin: 5% auto 0;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   color: #fff;
 }
@@ -635,6 +634,7 @@ input[data-error]::after {
     display: flex;
     align-items: center;
     justify-content: center;
+
   }
 }
 
