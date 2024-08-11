@@ -1,37 +1,9 @@
-:root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: var(--font-default);
-  --modal-duration: 0.8s;
-  --menu-active-color: #232323;
-  --menu-active-text: white;
-  --modal-form-body-width: 420px;
-  --modal-form-body-height: 677px;
-  --gray: #c4c4c4;
-  --green: #279e7a;
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import url("_variables.css");
+@import url("_reset.css");
+@import url("_base.css");
+
 /* Landing Page */
 
-body {
-  margin: 0;
-  display: flex;
-  height: 100vh;
-  justify-content: space-between;
-  flex-direction: column;
-  background-image: url("background.png");
-  font-family: var(--font-default);
-  font-size: 18px;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-img {
-  padding-right: 1rem;
-}
 
 .topnav {
   margin: 3.5%;
@@ -146,17 +118,6 @@ img {
   }
 }
 
-main {
-  font-size: 130%;
-  font-weight: bolder;
-  color: black;
-  padding-top: 0.5vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 1px 20px 15px;
-  border-radius: 2rem;
-  text-align: justify;
-}
 
 .modal-btn {
   font-size: 145%;
