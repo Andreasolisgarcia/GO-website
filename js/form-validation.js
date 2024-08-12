@@ -86,7 +86,6 @@ function validateEmail() {
   const isValidEmail = isEmail(inputValue);
 
   if (!isValidEmail) {
-    errorMessage = "Veuillez entrer un mail valide";
     setDataErrorAttribute(inputElement, errorMessages.invalidEmail);
     return false;
   }
