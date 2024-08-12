@@ -18,8 +18,7 @@ function confirmation(message, width, height) {
   const root = document.querySelector(':root')
   modalFormBody.className = "confirmation"
   modalFormBody.innerHTML = `<div class= "confirmation-content"><div class= "confirmation-message">${message}</div></div>
-  <button  class="btn-submit close"
-  class="button">Fermer</button>`;
+  <button  class="button btn-submit close">Fermer</button>`;
 
   root.style.setProperty('--modal-form-body-width', width +'px');
   root.style.setProperty('--modal-form-body-height', height + 'px');
