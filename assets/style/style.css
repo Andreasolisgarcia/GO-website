@@ -297,13 +297,7 @@ input {
   opacity: 0;
   transition: 0.3s;
 }
-input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
-input[type="date"]::-webkit-input-placeholder {
-  visibility: hidden;
-}
+
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
