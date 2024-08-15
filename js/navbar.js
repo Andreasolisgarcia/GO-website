@@ -1,14 +1,9 @@
-function editNav() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
-    var y = document.getElementById("main-navbar");
-    if (y.className === "main-navbar") {
-      y.className += " main-navbar__active";
-    } else {
-      y.className = "main-navbar";
-    }
-  }
+const navbar = document.getElementById("navbar");
+const listOfNavbarLinks = document.getElementById("navLinks")
+const hamburgerIcon = document.getElementById('hamburgerIcon')
+
+
+hamburgerIcon.addEventListener('click', (e) => {
+  navbar.classList.toggle('responsive')
+  listOfNavbarLinks.classList.toggle('main-navbar__active')
+})
