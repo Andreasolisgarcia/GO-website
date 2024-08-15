@@ -7,8 +7,8 @@ form.addEventListener("submit", (e) => {
 
   if (validate()) {
     const modalFormBody = document.getElementById("content");
-    var width = modalFormBody.offsetWidth;
-    var height = modalFormBody.offsetHeight;
+    let width = modalFormBody.offsetWidth;
+    let height = modalFormBody.offsetHeight;
     confirmation("Merci pour <br> votre inscription", width, height);
   }
 });
@@ -109,7 +109,7 @@ function validateRadios() {
   const locationRadios = document.getElementsByName("location");
   removeDataErrorAttribute(locationRadios[0]);
 
-  var count = 0;
+  let count = 0;
   locationRadios.forEach((locationRadio) =>
     locationRadio.checked ? (count += 1) : (count += 0)
   );
