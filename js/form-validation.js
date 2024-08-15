@@ -15,14 +15,14 @@ form.addEventListener("submit", (e) => {
 
 function confirmation(message, width, height) {
   const modalFormBody = document.getElementById("modalFormBody");
-  const root = document.querySelector(':root')
-  modalFormBody.className = "confirmation"
+  const root = document.querySelector(":root");
+  modalFormBody.className = "confirmation";
   modalFormBody.innerHTML = `<div class= "confirmation-content"><div class= "confirmation-message">${message}</div></div>
   <button  class="button btn-submit close">Fermer</button>`;
 
-  root.style.setProperty('--modal-form-body-width', width +'px');
-  root.style.setProperty('--modal-form-body-height', height + 'px');
-  addCloseEventToBtns() 
+  root.style.setProperty("--modal-form-body-width", width + "px");
+  root.style.setProperty("--modal-form-body-height", height + "px");
+  addCloseEventToBtns();
 }
 
 function validate() {
@@ -50,6 +50,8 @@ const errorMessages = {
   emailRequired: "Veuillez donner un email.",
   invalidEmail: "Veuillez entrer un mail valide.",
   birthdate: "Veuillez selectioner une date de naissance.",
+  birthdateValidDate: "Veuillez selectioner une date de naissance valide",
+  birthdateOver18: "Vous devez être majeur pour participer.",
   numberOfTournaments: "Veuillez selectioner un numéro.",
   location: "Veulliez selectioner une ville.",
   conditions: "Veuillez accepter les termes et conditions.",
@@ -98,7 +100,38 @@ function isEmail(email) {
 }
 
 function validateBirthdate() {
-  return fieldNotEmpty("birthdate", errorMessages.birthdate);
+  const currentDate = new Date();
+  const inputElement = document.getElementById("birthdate");
+  const birthdate = new Date(inputElement.value);
+
+  removeDataErrorAttribute(inputElement);
+
+  // Vérification : date vide
+  if (!fieldNotEmpty("birthdate", errorMessages.birthdate)) {
+    return false;
+  }
+
+  // Vérification : date dans le futur
+  if (birthdate > currentDate) {
+    setDataErrorAttribute(inputElement, errorMessages.birthdateValidDate);
+    return false;
+  }
+
+  // Vérification : utilisateur +18
+  let age = currentDate.getFullYear() - birthdate.getFullYear();
+  const monthDifference = currentDate.getMonth() - birthdate.getMonth();
+  const dayDifference = currentDate.getDate() - birthdate.getDate();
+
+  if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+    age--;
+  }
+
+  if (age < 18) {
+    setDataErrorAttribute(inputElement, errorMessages.birthdateOver18);
+    return false;
+  }
+
+  return true;
 }
 
 function validateNumberOfturnements() {
